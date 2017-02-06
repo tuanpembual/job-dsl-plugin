@@ -655,6 +655,19 @@ class PublisherContext extends AbstractExtensibleContext {
         }
     }
 
+    // covcomplplot
+    // option for anayzer: Cobertura, Clover, CloverBranch
+    @RequiresPlugin(id = 'covcomplplot')
+    void covcomplplot(String analyzer, boolean verbose = false, boolean excludeGetterSetter = false, boolean locateTopMost = false) {
+
+        publisherNodes << new NodeBuilder().'hudson.plugins.covcomplplot.CovComplPlotPublisher' {
+            delegate.analyzer(analyzer)
+            delegate.verbose(verbose)
+            delegate.excludeGetterSetter(excludeGetterSetter)
+            delegate.locateTopMost(locateTopMost)
+        }
+    }
+
     /**
      * Allows to claim unsuccessful builds.
      *
